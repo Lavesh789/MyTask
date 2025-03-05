@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Work Assignment Form</title>
+<style>
+body {
+    font-family: Arial, sans-serif;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #2c3e50;
+}
+
+.form-container {
+    width: 80%;
+    max-width: 600px;
+    border: 2px solid black;
+    padding: 20px;
+    position: relative;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: calc(100% - 12px);
+    padding: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    background-color: #4a5568;
+}
+
+.form-group textarea {
+    height: 150px;
+    background-color: #4a5568;
+}
+
+.submit-button {
+    background-color: rgb(0, 26, 255);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+h2 { 
+    font-style: sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+}
+select option{
+    color: #808080;
+}
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Work Assignment Form</h2> <form>
+        <div class="form-group">
+            <label for="domain">Domain</label>
+            <select id="domain" name="domain">
+                <option value="">Select Domain</option>
+                <option value="web-development">Web Development</option>
+                <option value="content-writing">Content Writing</option>
+                <option value="finance">Finance</option>
+                <option value="graphic-designing">Graphic Designing</option>
+                <option value="hr-management">HR Management</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="to">TO</label>
+            <input type="email" id="to" name="to" multiple placeholder="Enter Email">
+        </div>
+
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Subject">
+        </div>
+
+        <div class="form-group">
+            <label for="body">Message</label>
+            <textarea id="body" name="body" placeholder="Type Here..."></textarea>
+        </div>
+        <br>
+        <br>
+
+        <button type="submit" class="submit-button">Submit</button>
+        <br>
+    </form>
+</div>
+
+</body>
+</html>

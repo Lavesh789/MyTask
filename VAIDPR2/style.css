@@ -1,0 +1,72 @@
+/* Classic Gradient Background */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2c3e50, #4a5568); /* Dark navy to soft gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container Styling */
+.container {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+/* Logo */
+.logo {
+    width: 100px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+/* Input Fields */
+input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+}
+
+input::placeholder {
+    color: #ddd;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #2a5298, #1e3c72);
+    transform: scale(1.05);
+}
+
+/* Message */
+#message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: white;
+}

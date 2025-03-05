@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Log</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #employee-log {
+            padding: 20px;
+        }
+
+        #employee-log h2 {
+            margin-bottom: 20px;
+        }
+
+        #employee-log .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #employee-log table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #employee-log table th,
+        #employee-log table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #employee-log table th {
+            background-color: #2980b9;
+        }
+
+        #employee-log .departments {
+            margin-bottom: 20px;
+        }
+
+        #employee-log .departments button {
+            margin-right: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <section id="employee-log" class="content-section">
+        <h2>Employee Log</h2>
+        <input type="text" id="employee-search" placeholder="Search Employees...">
+        <br>
+        <div class="departments">
+            <br>
+            <strong>Departments</strong>
+            <br><br>
+            <button onclick="filterByDepartment('IT')">IT Department</button>
+            <button onclick="filterByDepartment('HR')">HR Department</button>
+            <button onclick="filterByDepartment('Finance')">Finance</button>
+            <button onclick="filterByDepartment('Marketing')">Marketing</button>
+        </div>
+        <table id="employee-table">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Last Login</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <h1>Employee Attendance Log</h1>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        // Placeholder data for demonstration
+        const employeeData = [
+            { id: 'EMP001', name: 'John Doe', department: 'IT', lastLogin: '2025-02-25 08:30 AM', status: 'Present' },
+            { id: 'EMP002', name: 'Jane Smith', department: 'HR', lastLogin: '2025-02-24 09:00 AM', status: 'Absent' },
+            { id: 'EMP003', name: 'Michael Brown', department: 'Finance', lastLogin: '2025-02-25 10:00 AM', status: 'Present' },
+            { id: 'EMP004', name: 'Emily White', department: 'Marketing', lastLogin: '2025-02-25 11:00 AM', status: 'Present' },
+            { id: 'EMP005', name: 'David Lee', department: 'IT', lastLogin: '2025-02-24 08:00 AM', status: 'Absent' },
+            // Add more data as needed
+        ];
+
+        function displayEmployeeLog(data) {
+            const tableBody = document.querySelector("#employee-table tbody");
+            tableBody.innerHTML = ""; // Clear existing rows
+
+            data.forEach(employee => {
+                const row = tableBody.insertRow();
+                const idCell = row.insertCell();
+                const nameCell = row.insertCell();
+                const departmentCell = row.insertCell();
+                const lastLoginCell = row.insertCell();
+                const statusCell = row.insertCell();
+
+                idCell.textContent = employee.id;
+                nameCell.textContent = employee.name;
+                departmentCell.textContent = employee.department;
+                lastLoginCell.textContent = employee.lastLogin;
+                statusCell.textContent = employee.status;
+            });
+        }
+
+        function filterByDepartment(department) {
+            const filteredData = employeeData.filter(employee => employee.department === department);
+            displayEmployeeLog(filteredData);
+        }
+
+        function searchEmployees() {
+            const searchTerm = document.getElementById('employee-search').value.toLowerCase();
+            const filteredData = employeeData.filter(employee =>
+                employee.name.toLowerCase().includes(searchTerm) ||
+                employee.id.toLowerCase().includes(searchTerm)
+            );
+            displayEmployeeLog(filteredData);
+        }
+
+        // Initial display of employee data
+        displayEmployeeLog(employeeData);
+
+        // Event listener for search input
+        document.getElementById('employee-search').addEventListener('input', searchEmployees);
+
+    </script>
+</body>
+</html>
