@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, #545454 0%, #545454 100%);
+            padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #ffffff;
+            margin: 20px auto;
+            border: 3px solid #ffffff;
+        }
+
+        .sidebar-btn {
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .logout-btn {
+            background: #ff4444;
+            margin-top: auto;
+        }
+
+        /* Task Section Styles */
+        .task-section {
+            flex: 1;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .task-list {
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .task-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e3f2fd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .task-btn {
+            padding: 8px 16px;
+            background: #545454;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .task-btn:hover {
+            background: #545454;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .task-section {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- React Version -->
+    <script type="text/babel">
+        function EmployeeDashboard() {
+            const navigateToDetail = () => {
+                window.location.href = 'detail.html';
+            };
+
+            return (
+                <div className="dashboard-container">
+                    <aside className="sidebar">
+                        <div className="profile-pic"></div>
+                        <button className="sidebar-btn">ID NO</button>
+                        <button className="sidebar-btn">Name</button>
+                        <button className="sidebar-btn">Domain working</button>
+                        <button className="sidebar-btn">Work Log</button>
+                        <button className="sidebar-btn">Employee Status</button>
+                        <button className="sidebar-btn logout-btn">Log Out</button>
+                    </aside>
+                    
+                    <main className="task-section">
+                        <div className="task-list">
+                            {[1,2,3,4,5].map(i => (
+                                <div className="task-card" key={i}>
+                                    <div className="task-header">
+                                        <span>{new Date().toLocaleDateString()}</span>
+                                    </div>
+                                    <h3>Task {i}</h3>
+                                    <p>Assigned by: Manager</p>
+                                    <div className="task-footer">
+                                        <button className="task-btn" onClick={navigateToDetail}>View Details</button>
+                                        <span>2:30 PM</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </main>
+                </div>
+            );
+        }
+
+        ReactDOM.render(
+            <EmployeeDashboard />,
+            document.getElementById('root')
+        );
+    </script>
+
+    <!-- Angular Version -->
+    <script type="text/typescript">
+        @Component({
+            selector: 'app-dashboard',
+            template: `
+                <div class="dashboard-container">
+                    <aside class="sidebar">
+                        <div class="profile-pic"></div>
+                        <button class="sidebar-btn">ID NO</button>
+                        <button class="sidebar-btn">Name</button>
+                        <button class="sidebar-btn">Domain working</button>
+                        <button class="sidebar-btn">Work Log</button>
+                        <button class="sidebar-btn">Employee Status</button>
+                        <button class="sidebar-btn logout-btn">Log Out</button>
+                    </aside>
+                    
+                    <main class="task-section">
+                        <div class="task-list">
+                            <div class="task-card" *ngFor="let task of tasks">
+                                <div class="task-header">
+                                    <span>{{today | date}}</span>
+                                </div>
+                                <h3>{{task.name}}</h3>
+                                <p>Assigned by: {{task.assignedBy}}</p>
+                                <div class="task-footer">
+                                    <button class="task-btn" (click)="navigateToDetail()">View Details</button>
+                                    <span>{{task.time}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            `
+        })
+        export class DashboardComponent {
+            today = new Date();
+            tasks = Array(5).fill(null).map((_, i) => ({
+                name: Task ${i + 1},
+                assignedBy: 'Manager',
+                time: '2:30 PM'
+            }));
+
+            navigateToDetail() {
+                window.location.href = 'detail.html';
+            }
+        }
+    </script>
+
+    <!-- Required Scripts -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</body>
+</html>
